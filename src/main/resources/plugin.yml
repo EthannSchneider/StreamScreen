@@ -4,3 +4,8 @@ author: Ethann8
 description: A plugin to be stream to map in minecraft.
 api-version: 1.13
 main: ch.shkermit.Main
+commands:
+  generateScreen:
+    description: Generate Screen to Map
+    usage: /<command>
+    permission: streamscreen.map
