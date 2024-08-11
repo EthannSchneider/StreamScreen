@@ -7,5 +7,5 @@ main: ch.shkermit.Main
 commands:
   generateScreen:
     description: Generate Screen to Map
-    usage: /<command>
+    usage: /generateScreen <width> <height>
     permission: streamscreen.map

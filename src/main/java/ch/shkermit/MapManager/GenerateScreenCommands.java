@@ -24,8 +24,26 @@ public class GenerateScreenCommands implements CommandExecutor {
             sender.sendMessage("Only players can use this command");
             return false;
         }
+        int max_width = 1;
+        int max_height = 1;
+
+        if (args.length >= 2 && args[0].matches("\\d+") && args[1].matches("\\d+")) {
+            max_width = Integer.parseInt(args[0]);
+            max_height = Integer.parseInt(args[1]);
+        }
+
         Player player = (Player) sender;
 
+        for (int width = 0; width < max_width; width++) {
+            for (int height = 0; height < max_height; height++) {
+                generateMap(player, width, height);
+            }
+        }
+        
+        return true;
+    }
+
+    private void generateMap(Player player, int width, int height) {
         MapView mapView = player.getServer().createMap(player.getWorld());
 
         mapView.setScale(MapView.Scale.FARTHEST);
@@ -34,7 +52,7 @@ public class GenerateScreenCommands implements CommandExecutor {
         mapView.addRenderer(new MapRenderer(true) {
             @Override
             public void render(MapView mapView, MapCanvas mapCanvas, Player player) {
-                videoCapture.renderCanvas(mapCanvas);
+                videoCapture.renderCanvas(mapCanvas, width, height);
             }
         });
         ItemStack item = new ItemStack(Material.FILLED_MAP);
@@ -42,9 +60,12 @@ public class GenerateScreenCommands implements CommandExecutor {
         meta.setMapView(mapView);
         item.setItemMeta(meta);
 
-        player.getInventory().addItem(item);
+        if (player.getInventory().firstEmpty() == -1) {
+            player.getWorld().dropItem(player.getLocation(), item);
+            return;
+        }
 
-        return true;
+        player.getInventory().addItem(item);
     }
     
 }

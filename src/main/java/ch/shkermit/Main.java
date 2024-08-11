@@ -13,7 +13,7 @@ public class Main extends JavaPlugin implements Listener {
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
 
-        videoCapture = new VideoCapture(128, 128);
+        videoCapture = new VideoCapture();
         videoCapture.start();
 
         getCommand("generateScreen").setExecutor(new GenerateScreenCommands(videoCapture));

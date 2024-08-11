@@ -19,7 +19,7 @@ public class VideoCaptureUDPServer extends Thread {
 
     public void run() {
         try {
-            byte[] buffer = new byte[1024*1024];
+            byte[] buffer = new byte[512*512];
             socket = new DatagramSocket(1337);
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
 

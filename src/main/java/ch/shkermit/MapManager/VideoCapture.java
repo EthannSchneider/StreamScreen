@@ -7,28 +7,25 @@ import org.bukkit.map.MapCanvas;
 
 public class VideoCapture extends Thread {
     public Boolean active = true;
-    public int width;
-    public int height;
 
     private BufferedImage currentFrame;
 
     VideoCaptureUDPServer videoCaptureUDPServer;
 
-    public void renderCanvas(MapCanvas mapCanvas) {
+    public void renderCanvas(MapCanvas mapCanvas, int width, int height) {
         BufferedImage frame = new BufferedImage(128, 128, BufferedImage.TYPE_INT_RGB);
 
+        int real_width = (width * -128);
+        int real_height = (height * -128);
         Graphics2D graphics = frame.createGraphics();
-        graphics.drawImage(currentFrame,0,0,null);
+        graphics.drawImage(currentFrame, real_width, real_height, null);
 
         mapCanvas.drawImage(0,0, frame);
         graphics.dispose();
     }
 
-    public VideoCapture(int width, int height) {
-        this.width = width;
-        this.height = height;
-
-        currentFrame = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+    public VideoCapture() {
+        currentFrame = new BufferedImage(128, 128, BufferedImage.TYPE_INT_RGB);
 
         videoCaptureUDPServer = new VideoCaptureUDPServer() {
             @Override
