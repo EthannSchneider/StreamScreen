@@ -1,4 +1,4 @@
-package ch.shkermit;
+package ch.shkermit.MapManager;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

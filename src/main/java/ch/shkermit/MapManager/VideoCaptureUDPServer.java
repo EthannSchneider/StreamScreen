@@ -1,4 +1,4 @@
-package ch.shkermit;
+package ch.shkermit.MapManager;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
