@@ -1,0 +1,6 @@
+name: StreamScreenToMap
+version: 1.0.0
+author: Ethann8
+description: A plugin to be stream to map in minecraft.
+api-version: 1.13
+main: ch.shkermit.Main
